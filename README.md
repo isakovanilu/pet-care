@@ -1,6 +1,6 @@
-# Pet Care App
+# Pet Care App (Web)
 
-A modern React Native web application for pet care services, featuring pet management, service booking, and a beautiful user interface.
+A modern web application for pet care services, featuring pet management, service booking, and a beautiful user interface. Built with React Native Web for cross-platform compatibility.
 
 ## 🌟 Features
 
@@ -70,14 +70,11 @@ pet-care/
 │   │   └── ProfileScreen.js   # User profile
 │   ├── context/         # Theme context
 │   └── utils/           # Helper functions
-└── config/              # Configuration files
 ```
 
 ## 🌐 Deployment
 
 ### Deploy to Netlify
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
 **Quick deploy:**
 1. Push code to GitHub
@@ -120,11 +117,10 @@ The app uses browser `localStorage` to store:
 
 ### Available Scripts
 
-- `npm start` - Start Expo development server
-- `npm run web` - Start web development server
-- `npm run build:web` - Build for web production
-- `npm run android` - Run on Android
-- `npm run ios` - Run on iOS
+- `npm start` - Start web development server
+- `npm run dev` - Start web development server (alias)
+- `npm run build` - Build for web production
+- `npm run build:web` - Build for web production (alias)
 
 ### Code Structure
 

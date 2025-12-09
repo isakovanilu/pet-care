@@ -8,10 +8,10 @@ import {
   ScrollView,
   Alert,
   Image,
-  Platform,
 } from 'react-native';
 import { getCurrentUser, createDocument, uploadFile } from '../../utils/firebaseHelpers';
 import * as ImagePicker from 'expo-image-picker';
+import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const PET_TYPES = ['Dog', 'Cat', 'Bird', 'Rabbit', 'Other'];
@@ -29,6 +29,25 @@ export default function AddPetScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   const pickImage = async () => {
+    if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      // Web image picker using file input
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setImage(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+      return;
+    }
+
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission needed', 'Please grant camera roll permissions');

@@ -237,7 +237,6 @@ export default function HomeScreen({ navigation }) {
   };
 
   const handleSave = () => {
-    console.log('handleSave called');
     
     if (selectedServices.length === 0) {
       if (Platform.OS === 'web') {
@@ -343,9 +342,8 @@ export default function HomeScreen({ navigation }) {
         
         try {
           window.localStorage.setItem('bookings', JSON.stringify(existingBookings));
-          console.log('✅ Saved to localStorage successfully');
         } catch (storageError) {
-          console.error('❌ localStorage error:', storageError);
+          console.error('localStorage error:', storageError);
           setLoading(false);
           window.alert('Failed to save booking: ' + storageError.message);
           return;
