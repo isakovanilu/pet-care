@@ -24,6 +24,27 @@ module.exports = async function (env, argv) {
     poll: 1000, // Poll every 1 second instead of watching files
   };
 
+  // Fix MIME type errors for assets
+  config.module = config.module || {};
+  config.module.rules = config.module.rules || [];
+  
+  // Add rule to handle null/undefined buffers gracefully
+  config.module.rules.push({
+    test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'static/media/[name].[hash][ext]',
+    },
+  });
+
+  // Handle null buffers in asset processing
+  config.resolve = config.resolve || {};
+  config.resolve.fallback = {
+    ...config.resolve.fallback,
+    fs: false,
+    path: false,
+  };
+
   return config;
 };
 

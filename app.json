@@ -5,7 +5,6 @@
     "version": "1.0.0",
     "platforms": ["web"],
     "web": {
-      "favicon": "./assets/favicon.png",
       "bundler": "webpack",
       "build": {
         "babel": {
